@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Category>
+    <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="~/css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="~/css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="~/css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="~/css/custom.css">
+<li class="dropdown">
+    <a class="nav-link text-dark" asp-controller="FoodItem"
+       asp-action="Index"
+        data-toggle="dropdown">MENU<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        @foreach (var category in Model)
+        {
+            <li class="nav-item" >
+                <a  class="nav-link text-dark" asp-controller="FoodItem" asp-action="List"
+                   asp-route-category="@category.CategoryName">@category.CategoryName</a>
+            </li>
+        }
+        <li class="divider"></li>
+        <li class="nav-item"  >
+            <a class="nav-link text-dark" asp-controller="FoodItem" asp-action="List" asp-route-Category="">Full Menu</a>
+        </li>
+    </ul>
+</li>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<RestaurantWebsite.UI.Models.FoodItem>
+
+    <style>
+        .row {
+            padding-top: 113px !important;
+        }
+        
+            .total {
+            text-align: right;
+            
+        }
+
+        .table {
+            border: 2px solid #d65106 !important;
+            border-collapse: separate;
+        }
+
+            .table th, .table td {
+                border: 1px solid #000;
+                font-size:12px;
+            }
+    </style>
+    <body>
+        <div class="menu-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="heading-title text-center">
+                            <h1>@ViewBag.CheckoutCompleteMessage </h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="font-size:26px" >Food Item Name</th>
+                    <th style="font-size:26px">Price</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="font-size:22px"> @Html.DisplayFor(modelItem => item.Name)</td>
+                        <td style="font-size:22px">@Html.DisplayFor(modelItem => item.Price)</td>
+
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th  style="font-size:22px" class="total" colspan="3">Total :</th>
+                    <td style="font-size:22px">@ViewBag.Total</td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </body>

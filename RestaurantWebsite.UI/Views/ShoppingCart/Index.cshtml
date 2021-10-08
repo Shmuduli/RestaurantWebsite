@@ -1,0 +1,70 @@
+﻿@model ShoppingCartViewModel
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+@if (Model.ShoppingCart.ShoppingCartItems.Count != 0)
+{
+    <h2>Your shopping cart</h2>
+    <h4>Here are the delicious foods in your shopping cart.</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Selected Quantity</th>
+                <th>FoodItem</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-center">@line.Amount</td>
+                    <td class="text-left">@line.FoodItem.Name</td>
+                    <td class="text-right">@line.FoodItem.Price.ToString("c")</td>
+                    <td class="text-right">
+                        @((line.Amount * line.FoodItem.Price).ToString("c"))
+                    </td>
+                    <td>
+                        <a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart"
+                           asp-route-foodId="@line.FoodItem.FoodItemId">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">
+                    @Model.ShoppingCartTotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <div class="text-center">
+        <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
+    </div>
+}
+else
+{
+    <br></br>
+    <h4>Your Shopping Cart is empty.</h4>
+    <br></br>
+    
+    <a class="nav-link text-dark" asp-controller="FoodItem" asp-action="List" asp-route-Category="">Click here to see Full Menu</a>
+    
+
+    <br></br>
+    <br></br>
+
+
+
+
+}
+
